@@ -1,0 +1,46 @@
+Lines per poem / end-words found in CMUdict:
+  The Lamb      20 lines,    20 found (100.0%)
+  The Tiger     24 lines,    24 found (100.0%)
+  Sonnets     2155 lines,  2097 found (97.3%)
+  most common end-words not in CMUdict: [('offence', 2), ('niggarding', 1), ('viewest', 1), ('renewest', 1), ('unprovident', 1), ('ruinate', 1), ('departest', 1), ('convertest', 1), ('untrimmed', 1), ('gazeth', 1)]
+
+Stopwords most often used as the line-final word: [('me', 33, '20% of its lines'), ('be', 22, '16% of its lines'), ('you', 12, '12% of its lines'), ('so', 11, '8% of its lines'), ('will', 10, '17% of its lines'), ('now', 9, '20% of its lines'), ('more', 9, '15% of its lines'), ('are', 7, '10% of its lines')]
+
+=== rhyme profile: 80 stopwords with >= 15 lines ===
+  Jensen-Shannon vs Hellinger agreement (Pearson r): 0.998
+  most similar pairs:   [('to', 'that', np.float64(0.115)), ('the', 'of', np.float64(0.12)), ('the', 'to', np.float64(0.123)), ('and', 'the', np.float64(0.131)), ('the', 'in', np.float64(0.132))]
+  most different pairs: [('other', 'before', np.float64(0.688)), ('up', 'we', np.float64(0.689)), ('had', 'we', np.float64(0.693)), ('out', 'before', np.float64(0.697)), ('other', 'had', np.float64(0.726))]
+  significantly distinctive stopwords: 10 of 80
+    me       n= 161 JS=0.211 (random ~0.137) p_adj=0.0200 more: i oʊ l
+    you      n= 101 JS=0.251 (random ~0.174) p_adj=0.0200 more: u oʊ ɚ
+    my       n= 351 JS=0.127 (random ~0.088) p_adj=0.0267 more: eɪ n ŋ
+    will     n=  57 JS=0.315 (random ~0.231) p_adj=0.0333 more: l ɪ ʌ
+    now      n=  44 JS=0.360 (random ~0.262) p_adj=0.0333 more: aʊ n ɹ
+    did      n=  27 JS=0.454 (random ~0.332) p_adj=0.0333 more: d i p
+    be       n= 135 JS=0.205 (random ~0.150) p_adj=0.0343 more: i d l
+    more     n=  59 JS=0.299 (random ~0.228) p_adj=0.0444 more: ɔ ɹ ɛ
+    where    n=  40 JS=0.373 (random ~0.275) p_adj=0.0444 more: z u ɛ
+    i        n= 320 JS=0.121 (random ~0.093) p_adj=0.0480 more: d ɔ n
+
+=== word profile: 80 stopwords with >= 15 lines ===
+  Jensen-Shannon vs Hellinger agreement (Pearson r): 0.998
+  most similar pairs:   [('the', 'of', np.float64(0.085)), ('to', 'that', np.float64(0.089)), ('and', 'to', np.float64(0.093)), ('and', 'is', np.float64(0.099)), ('the', 'in', np.float64(0.099))]
+  most different pairs: [('out', 'had', np.float64(0.612)), ('why', 'before', np.float64(0.629)), ('other', 'before', np.float64(0.633)), ('out', 'before', np.float64(0.636)), ('other', 'had', np.float64(0.64))]
+  significantly distinctive stopwords: 9 of 80
+    my       n= 351 JS=0.101 (random ~0.066) p_adj=0.0100 more: eɪ s ŋ
+    me       n= 161 JS=0.163 (random ~0.104) p_adj=0.0100 more: m i oʊ
+    be       n= 135 JS=0.170 (random ~0.115) p_adj=0.0100 more: i b d
+    you      n= 101 JS=0.220 (random ~0.136) p_adj=0.0100 more: u j oʊ
+    i        n= 320 JS=0.100 (random ~0.070) p_adj=0.0160 more: ɔ ð b
+    now      n=  44 JS=0.306 (random ~0.214) p_adj=0.0200 more: n aʊ ə
+    will     n=  57 JS=0.250 (random ~0.186) p_adj=0.0228 more: w l ɪ
+    more     n=  59 JS=0.245 (random ~0.183) p_adj=0.0444 more: ɹ ɔ m
+    before   n=  15 JS=0.492 (random ~0.369) p_adj=0.0444 more: b ɔ f
+
+=== rhyme_notfinal profile: 75 stopwords with >= 15 lines ===
+  Jensen-Shannon vs Hellinger agreement (Pearson r): 0.998
+  most similar pairs:   [('to', 'that', np.float64(0.115)), ('the', 'of', np.float64(0.12)), ('the', 'to', np.float64(0.123)), ('and', 'the', np.float64(0.131)), ('the', 'in', np.float64(0.132))]
+  most different pairs: [('at', 'we', np.float64(0.667)), ('too', 'we', np.float64(0.669)), ('our', 'we', np.float64(0.677)), ('up', 'we', np.float64(0.679)), ('these', 'we', np.float64(0.682))]
+  significantly distinctive stopwords: 0 of 75
+
+All results written to ./output/task8/
