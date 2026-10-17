@@ -7,6 +7,8 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import spearmanr
+from collections import Counter
+from scipy.spatial.distance import jensenshannon
 
 
 #task4
@@ -150,11 +152,325 @@ with open(
     writer.writerows(task5_results)
 
 
-print("\nTask 5 done")
-
 for row in task5_results:
     print(
         row[0],
         "rho =", round(row[1], 4),
         "p =", round(row[2], 4)
     )
+
+# Task 6 
+
+os.makedirs("./output/task6", exist_ok=True)
+bin_edges = np.linspace(-1.0, 1.0, 11)
+profiles = {}
+stopword_line_counts = Counter()
+compound_scores = {}
+
+for row in results:
+    poem = row[0]
+    line_number = row[1]
+    compound = row[6]
+
+    compound_scores[(poem, line_number)] = compound
+
+
+# sentiment histogram for each stopword
+
+
+for title, filename in poems:
+
+    lines = read_poem_lines(filename)
+
+    for line_number, line in enumerate(lines, start=1):
+
+        tokens = word_tokenize(line)
+
+        line_stopwords = set()
+
+        for token in tokens:
+
+            word = token.lower()
+
+            if word in stops:
+                line_stopwords.add(word)
+
+       
+        if len(line_stopwords) == 0:
+            continue
+
+        compound = compound_scores[(title, line_number)]
+
+        bin_number = np.digitize(
+            compound,
+            bin_edges[1:-1]
+        )
+
+        for word in line_stopwords:
+
+            key = (title, word)
+
+            if key not in profiles:
+                profiles[key] = np.zeros(
+                    10,
+                    dtype=int
+                )
+
+            profiles[key][bin_number] += 1
+            stopword_line_counts[key] += 1
+
+
+# Save raw histogram counts
+
+profile_count_file = (
+    "./output/task6/"
+    "stopword_sentiment_profile_counts.csv"
+)
+
+with open(
+    profile_count_file,
+    "w",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    writer = csv.writer(file)
+
+    header = [
+        "poem",
+        "stopword",
+        "line_count"
+    ]
+
+    for i in range(10):
+        header.append(f"bin_{i + 1}")
+
+    writer.writerow(header)
+
+    for key in sorted(profiles):
+
+        title, word = key
+
+        writer.writerow([
+            title,
+            word,
+            stopword_line_counts[key],
+            *profiles[key]
+        ])
+
+
+# Convert counts to probability distributions
+
+probability_profiles = {}
+
+for key in profiles:
+
+    counts = profiles[key].astype(float)
+
+    total = counts.sum()
+
+    if total > 0:
+        probability_profiles[key] = counts / total
+
+
+probability_file = (
+    "./output/task6/"
+    "stopword_sentiment_profile_probabilities.csv"
+)
+
+with open(
+    probability_file,
+    "w",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    writer = csv.writer(file)
+
+    header = [
+        "poem",
+        "stopword"
+    ]
+
+    for i in range(10):
+        header.append(f"bin_{i + 1}")
+
+    writer.writerow(header)
+
+    for key in sorted(probability_profiles):
+
+        title, word = key
+
+        writer.writerow([
+            title,
+            word,
+            *probability_profiles[key]
+        ])
+
+
+for title, filename in poems:
+
+    words = []
+
+    for poem_title, word in probability_profiles:
+
+        if poem_title == title:
+            words.append(word)
+
+    words = sorted(words)
+
+    distance_matrix = np.zeros(
+        (len(words), len(words))
+    )
+
+    for i in range(len(words)):
+
+        for j in range(len(words)):
+
+            profile_a = probability_profiles[
+                (title, words[i])
+            ]
+
+            profile_b = probability_profiles[
+                (title, words[j])
+            ]
+
+            distance = jensenshannon(
+                profile_a,
+                profile_b,
+                base=2
+            )
+
+            distance_matrix[i][j] = distance
+
+
+    safe_title = (
+        title
+        .lower()
+        .replace(" ", "_")
+    )
+
+
+    distance_file = (
+        "./output/task6/"
+        + safe_title
+        + "_sentiment_distances.csv"
+    )
+
+    with open(
+        distance_file,
+        "w",
+        newline="",
+        encoding="utf-8"
+    ) as file:
+
+        writer = csv.writer(file)
+
+        writer.writerow(
+            ["stopword"] + words
+        )
+
+        for i in range(len(words)):
+
+            writer.writerow(
+                [words[i]]
+                + list(distance_matrix[i])
+            )
+
+    words_by_frequency = sorted(
+        words,
+        key=lambda word:
+            stopword_line_counts[
+                (title, word)
+            ],
+        reverse=True
+    )
+
+    plot_words = words_by_frequency[:15]
+
+    plot_matrix = np.zeros(
+        (
+            len(plot_words),
+            len(plot_words)
+        )
+    )
+
+    for i in range(len(plot_words)):
+
+        for j in range(len(plot_words)):
+
+            profile_a = probability_profiles[
+                (title, plot_words[i])
+            ]
+
+            profile_b = probability_profiles[
+                (title, plot_words[j])
+            ]
+
+            plot_matrix[i][j] = (
+                jensenshannon(
+                    profile_a,
+                    profile_b,
+                    base=2
+                )
+            )
+
+
+    plt.figure(figsize=(10, 8))
+
+    plt.imshow(
+        plot_matrix,
+        vmin=0,
+        vmax=1
+    )
+
+    plt.colorbar(
+        label="Jensen-Shannon distance"
+    )
+
+    plt.xticks(
+        range(len(plot_words)),
+        plot_words,
+        rotation=90
+    )
+
+    plt.yticks(
+        range(len(plot_words)),
+        plot_words
+    )
+
+    plt.title(
+        title
+        + " - Stopword sentiment profile distance"
+    )
+
+    plt.tight_layout()
+
+    plt.savefig(
+        "./output/task6/"
+        + safe_title
+        + "_sentiment_distance_heatmap.png"
+    )
+
+    plt.close()
+
+
+print("\nTask 6 done")
+
+for title, filename in poems:
+
+    poem_words = [
+        word
+        for poem_title, word in profiles
+        if poem_title == title
+    ]
+
+    print(
+        title,
+        "number of stopwords analysed:",
+        len(poem_words)
+    )
+
+print("Histogram counts saved to:", profile_count_file)
+
+print("Probability profiles saved to:",probability_file)
