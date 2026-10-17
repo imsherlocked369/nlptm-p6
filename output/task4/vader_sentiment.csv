@@ -1,0 +1,38 @@
+poem,line_number,line,negative,neutral,positive,compound
+The Lamb,1,"Little lamb, who made thee?",0.0,1.0,0.0,0.0
+The Lamb,2,"Does thou know who made thee,",0.0,1.0,0.0,0.0
+The Lamb,3,"Gave thee life, and bid thee feed",0.0,1.0,0.0,0.0
+The Lamb,4,By the stream and o’er the mead;,0.0,1.0,0.0,0.0
+The Lamb,5,"Gave thee clothing of delight,",0.0,0.506,0.494,0.5994
+The Lamb,7,"Gave thee such a tender voice,",0.0,1.0,0.0,0.0
+The Lamb,8,Making all the vales rejoice?,0.0,0.58,0.42,0.4404
+The Lamb,9,"Little lamb, who made thee?",0.0,1.0,0.0,0.0
+The Lamb,10,Does thou know who made thee?,0.0,1.0,0.0,0.0
+The Lamb,11,"Little lamb, I’ll tell thee;",0.0,1.0,0.0,0.0
+The Lamb,12,"Little lamb, I’ll tell thee:",0.0,1.0,0.0,0.0
+The Lamb,13,"He is callèd by thy name,",0.0,1.0,0.0,0.0
+The Lamb,14,For He calls Himself a Lamb.,0.0,1.0,0.0,0.0
+The Lamb,15,"He is meek, and He is mild,",0.0,1.0,0.0,0.0
+The Lamb,16,He became a little child.,0.0,1.0,0.0,0.0
+The Lamb,17,"I a child, and thou a lamb,",0.0,1.0,0.0,0.0
+The Lamb,18,We are callèd by His name.,0.0,1.0,0.0,0.0
+The Tiger,2,"In the forests of the night,",0.0,1.0,0.0,0.0
+The Tiger,3,What immortal hand or eye,0.0,0.366,0.634,0.6369
+The Tiger,5,In what distant deeps or skies,0.0,1.0,0.0,0.0
+The Tiger,6,Burnt the fire of thine eyes?,0.324,0.676,0.0,-0.34
+The Tiger,7,On what wings dare he aspire?,0.0,1.0,0.0,0.0
+The Tiger,8,What the hand dare seize the fire?,0.226,0.472,0.302,0.2023
+The Tiger,9,And what shoulder and what art,0.0,1.0,0.0,0.0
+The Tiger,10,Could twist the sinews of thy heart?,0.0,1.0,0.0,0.0
+The Tiger,11,"And, when thy heart began to beat,",0.0,1.0,0.0,0.0
+The Tiger,12,What dread hand and what dread feet?,0.455,0.303,0.242,-0.4215
+The Tiger,13,What the hammer? what the chain?,0.0,1.0,0.0,0.0
+The Tiger,14,In what furnace was thy brain?,0.0,1.0,0.0,0.0
+The Tiger,15,What the anvil? what dread grasp,0.375,0.625,0.0,-0.4588
+The Tiger,16,Dare its deadly terrors clasp?,0.474,0.526,0.0,-0.5574
+The Tiger,17,"When the stars threw down their spears,",0.0,1.0,0.0,0.0
+The Tiger,18,"And watered heaven with their tears,",0.207,0.435,0.359,0.34
+The Tiger,19,Did He smile His work to see?,0.0,0.706,0.294,0.3612
+The Tiger,20,Did He who made the lamb make thee?,0.0,1.0,0.0,0.0
+The Tiger,22,"In the forests of the night,",0.0,1.0,0.0,0.0
+The Tiger,23,What immortal hand or eye,0.0,0.366,0.634,0.6369
