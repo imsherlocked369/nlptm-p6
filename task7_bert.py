@@ -66,8 +66,6 @@ def read_poem_lines(filename):
 
 # load BERT
 
-print("Loading BERT model...")
-
 tokenizer = AutoTokenizer.from_pretrained(
     "bert-base-uncased"
 )
@@ -352,9 +350,9 @@ for title, filename in poems:
         ][bin_number] += 1
 
 
-# ---------------------------------------------------------
+
 # save contribution histograms
-# ---------------------------------------------------------
+
 
 profile_file = os.path.join(
     output_dir,
@@ -586,8 +584,6 @@ for title, filename in poems:
             row[2]
         )
 
-
-print("\nTask 7 done")
 
 print("Contribution values saved to:",contribution_file)
 
