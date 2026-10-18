@@ -1,0 +1,102 @@
+poem,line_number,line,stopword,cosine_similarity,contribution
+The Lamb,1,"Little lamb, who made thee?",who,0.3378263,0.17241251
+The Lamb,2,"Does thou know who made thee,",does,0.4730875,0.16256937
+The Lamb,2,"Does thou know who made thee,",who,0.37152445,0.12766877
+The Lamb,3,"Gave thee life, and bid thee feed",and,0.3446849,0.12151566
+The Lamb,4,By the stream and o’er the mead;,by,0.373921,0.13715881
+The Lamb,4,By the stream and o’er the mead;,the,0.26966092,0.09891493
+The Lamb,4,By the stream and o’er the mead;,and,0.36218965,0.1328556
+The Lamb,4,By the stream and o’er the mead;,the,0.26966092,0.09891493
+The Lamb,5,"Gave thee clothing of delight,",of,0.3525853,0.16019712
+The Lamb,7,"Gave thee such a tender voice,",such,0.4766002,0.18370542
+The Lamb,7,"Gave thee such a tender voice,",a,0.3541961,0.1365248
+The Lamb,8,Making all the vales rejoice?,all,0.35678482,0.20705667
+The Lamb,8,Making all the vales rejoice?,the,0.16931431,0.09825995
+The Lamb,9,"Little lamb, who made thee?",who,0.3378263,0.17241251
+The Lamb,10,Does thou know who made thee?,does,0.45454627,0.15942487
+The Lamb,10,Does thou know who made thee?,who,0.3547189,0.12441201
+The Lamb,11,"Little lamb, I’ll tell thee;",i'll,0.46136048,0.23367952
+The Lamb,12,"Little lamb, I’ll tell thee:",i'll,0.43185636,0.24256548
+The Lamb,13,"He is callèd by thy name,",he,0.36078396,0.14470488
+The Lamb,13,"He is callèd by thy name,",is,0.40583622,0.16277464
+The Lamb,13,"He is callèd by thy name,",by,0.40613535,0.16289462
+The Lamb,14,For He calls Himself a Lamb.,for,0.3314168,0.18739742
+The Lamb,14,For He calls Himself a Lamb.,he,0.2681597,0.15162912
+The Lamb,14,For He calls Himself a Lamb.,himself,0.32372403,0.18304761
+The Lamb,14,For He calls Himself a Lamb.,a,0.24391872,0.13792223
+The Lamb,15,"He is meek, and He is mild,",he,0.40402496,0.13338538
+The Lamb,15,"He is meek, and He is mild,",is,0.43781224,0.14453995
+The Lamb,15,"He is meek, and He is mild,",and,0.43150374,0.14245726
+The Lamb,15,"He is meek, and He is mild,",he,0.40402496,0.13338538
+The Lamb,15,"He is meek, and He is mild,",is,0.43781224,0.14453995
+The Lamb,16,He became a little child.,he,0.33774805,0.16629317
+The Lamb,16,He became a little child.,a,0.3227043,0.15888625
+The Lamb,17,"I a child, and thou a lamb,",i,0.37225258,0.13363515
+The Lamb,17,"I a child, and thou a lamb,",a,0.33149654,0.11900412
+The Lamb,17,"I a child, and thou a lamb,",and,0.3965391,0.14235379
+The Lamb,17,"I a child, and thou a lamb,",a,0.33149654,0.11900412
+The Lamb,18,We are callèd by His name.,we,0.39670607,0.16917373
+The Lamb,18,We are callèd by His name.,are,0.3855103,0.16439934
+The Lamb,18,We are callèd by His name.,by,0.40134946,0.17115389
+The Lamb,18,We are callèd by His name.,his,0.35822028,0.15276162
+The Tiger,2,"In the forests of the night,",in,0.3252326,0.14979313
+The Tiger,2,"In the forests of the night,",the,0.24190494,0.111414716
+The Tiger,2,"In the forests of the night,",of,0.2923659,0.13465564
+The Tiger,2,"In the forests of the night,",the,0.24190494,0.111414716
+The Tiger,3,What immortal hand or eye,what,0.43835974,0.18001157
+The Tiger,3,What immortal hand or eye,or,0.47605407,0.19549067
+The Tiger,5,In what distant deeps or skies,in,0.31025565,0.122894384
+The Tiger,5,In what distant deeps or skies,what,0.29766834,0.11790846
+The Tiger,5,In what distant deeps or skies,or,0.42519724,0.16842353
+The Tiger,6,Burnt the fire of thine eyes?,the,0.2457417,0.105393805
+The Tiger,6,Burnt the fire of thine eyes?,of,0.31651095,0.13574535
+The Tiger,7,On what wings dare he aspire?,on,0.315468,0.13164754
+The Tiger,7,On what wings dare he aspire?,what,0.39832425,0.16622417
+The Tiger,7,On what wings dare he aspire?,he,0.36565214,0.15258981
+The Tiger,8,What the hand dare seize the fire?,what,0.3990727,0.16162029
+The Tiger,8,What the hand dare seize the fire?,the,0.26246566,0.106295854
+The Tiger,8,What the hand dare seize the fire?,the,0.26246566,0.106295854
+The Tiger,9,And what shoulder and what art,and,0.5347291,0.17915352
+The Tiger,9,And what shoulder and what art,what,0.5143424,0.17232324
+The Tiger,9,And what shoulder and what art,and,0.5347291,0.17915352
+The Tiger,9,And what shoulder and what art,what,0.5143424,0.17232324
+The Tiger,10,Could twist the sinews of thy heart?,the,0.24392018,0.089154966
+The Tiger,10,Could twist the sinews of thy heart?,of,0.2506376,0.091610245
+The Tiger,11,"And, when thy heart began to beat,",and,0.42542395,0.14137173
+The Tiger,11,"And, when thy heart began to beat,",when,0.4049957,0.13458325
+The Tiger,11,"And, when thy heart began to beat,",to,0.4398737,0.14617348
+The Tiger,12,What dread hand and what dread feet?,what,0.41704845,0.1314926
+The Tiger,12,What dread hand and what dread feet?,and,0.42025936,0.13250498
+The Tiger,12,What dread hand and what dread feet?,what,0.41704845,0.1314926
+The Tiger,13,What the hammer? what the chain?,what,0.5557052,0.21425016
+The Tiger,13,What the hammer? what the chain?,the,0.3077531,0.11865311
+The Tiger,13,What the hammer? what the chain?,what,0.5557052,0.21425016
+The Tiger,13,What the hammer? what the chain?,the,0.3077531,0.11865311
+The Tiger,14,In what furnace was thy brain?,in,0.30665267,0.1295234
+The Tiger,14,In what furnace was thy brain?,what,0.3698241,0.15620564
+The Tiger,14,In what furnace was thy brain?,was,0.4965089,0.20971452
+The Tiger,15,What the anvil? what dread grasp,what,0.5028752,0.17406175
+The Tiger,15,What the anvil? what dread grasp,the,0.3412323,0.11811179
+The Tiger,15,What the anvil? what dread grasp,what,0.5028752,0.17406175
+The Tiger,16,Dare its deadly terrors clasp?,its,0.33762893,0.17392252
+The Tiger,17,"When the stars threw down their spears,",when,0.35036752,0.16065176
+The Tiger,17,"When the stars threw down their spears,",the,0.1986547,0.09108786
+The Tiger,17,"When the stars threw down their spears,",down,0.26203912,0.12015112
+The Tiger,17,"When the stars threw down their spears,",their,0.31257945,0.14332505
+The Tiger,18,"And watered heaven with their tears,",and,0.4553657,0.16419868
+The Tiger,18,"And watered heaven with their tears,",with,0.32970098,0.11888569
+The Tiger,18,"And watered heaven with their tears,",their,0.43311957,0.15617703
+The Tiger,19,Did He smile His work to see?,did,0.47962996,0.16333093
+The Tiger,19,Did He smile His work to see?,he,0.38348493,0.13059016
+The Tiger,19,Did He smile His work to see?,his,0.40188652,0.13685654
+The Tiger,19,Did He smile His work to see?,to,0.35858983,0.12211249
+The Tiger,20,Did He who made the lamb make thee?,did,0.4531889,0.17481603
+The Tiger,20,Did He who made the lamb make thee?,he,0.28933364,0.11160944
+The Tiger,20,Did He who made the lamb make thee?,who,0.27261344,0.10515967
+The Tiger,20,Did He who made the lamb make thee?,the,0.20083575,0.07747168
+The Tiger,22,"In the forests of the night,",in,0.3252326,0.14979313
+The Tiger,22,"In the forests of the night,",the,0.24190494,0.111414716
+The Tiger,22,"In the forests of the night,",of,0.2923659,0.13465564
+The Tiger,22,"In the forests of the night,",the,0.24190494,0.111414716
+The Tiger,23,What immortal hand or eye,what,0.43835974,0.18001157
+The Tiger,23,What immortal hand or eye,or,0.47605407,0.19549067
