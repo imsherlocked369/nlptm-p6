@@ -585,8 +585,8 @@ for title, filename in poems:
         )
 
 
-print("Contribution values saved to:",contribution_file)
+print("Contribution value:",contribution_file)
 
-print("Summary saved to:",summary_file)
+print("Summary ",summary_file)
 
-print("Profiles saved to:",profile_file)
+print("Profiles",profile_file)
