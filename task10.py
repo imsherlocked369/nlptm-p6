@@ -85,7 +85,10 @@ poems = [
 	("Sonnets", "./poems/sonnets.txt", "english"),
 
 	("Ensimmainen lempi", "./poems/ensimmainenlempi.txt", "finnish"),
-	("Oli mulla kulta kaunoinen", "./poems/olimullakultakaunoinen.txt", "finnish")
+	("Oli mulla kulta kaunoinen", "./poems/olimullakultakaunoinen.txt", "finnish"),
+
+	("La Vita Solitaria", "./poems/lavitasolitaria.txt", "italian"),
+	("A Silvia", "./poems/asilvia.txt", "italian")
 ]
 
 
@@ -155,16 +158,20 @@ for i in range(len(langs) - 1):
 		spt = sum([[a, b] for _, _, a, b in both_stops], [])
 		npt = sum([[a, b] for _, _, a, b in both_normal], [])
 		mpt = sum([[a, b] for _, _, a, b in different], [])
+		spt = spt if bool(spt) else [0]
+		npt = npt if bool(npt) else [0]
+		mpt = mpt if bool(mpt) else [0]
+
 		stop_plot = [np.mean(spt), np.std(spt), max(spt), min(spt)]
 		normal_plot = [np.mean(npt), np.std(npt), max(npt), min(npt)]
 		mixed_plot = [np.mean(mpt), np.std(mpt), max(mpt), min(mpt)]
 
 
 
-		print("\n\\begin{table}\\centering\\begin{tabular}{|c|c|c|c|c|}\\hline \n\t\t\t& Mean & Std & Max & min \\\\ \\hline \\hline")
-		print(f"\t\tStop & {stop_plot[0]:.3e} & {stop_plot[1]:.3e} & {stop_plot[2]:.3e} & {stop_plot[3]:.3e} \\\\ \\hline")
-		print(f"\t\tNormal & {normal_plot[0]:.3e} & {normal_plot[1]:.3e} & {normal_plot[2]:.3e} & {normal_plot[3]:.3e} \\\\ \\hline")
-		print(f"\t\tMixed & {mixed_plot[0]:.3e} & {mixed_plot[1]:.3e} & {mixed_plot[2]:.3e} & {mixed_plot[3]:.3e} \\\\ \\hline")
+		print("\n\\begin{table}\\centering\\begin{tabular}{|c|c|c|c|c|c|}\\hline \n\t\t\t& Count &Mean & Std & Max & min \\\\ \\hline \\hline")
+		print(f"\t\tStop & {len(both_stops)} &{stop_plot[0]:.3e} & {stop_plot[1]:.3e} & {stop_plot[2]:.3e} & {stop_plot[3]:.3e} \\\\ \\hline")
+		print(f"\t\tNormal & {len(both_normal)} & {normal_plot[0]:.3e} & {normal_plot[1]:.3e} & {normal_plot[2]:.3e} & {normal_plot[3]:.3e} \\\\ \\hline")
+		print(f"\t\tMixed & {len(different)} & {mixed_plot[0]:.3e} & {mixed_plot[1]:.3e} & {mixed_plot[2]:.3e} & {mixed_plot[3]:.3e} \\\\ \\hline")
 		print(f"\\end{{tabular}}\\caption{{{lang1} {lang2}}}\\label{{tab:{lang1} {lang2}}}\\end{{table}}")
 
 

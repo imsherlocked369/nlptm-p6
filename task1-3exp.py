@@ -147,12 +147,16 @@ fig, ax = plt.subplots(4, 1)
 fig.set_size_inches(15, 15)
 fig.suptitle("Sonnets weights") 
 
+mean_of_means = []
+
 for i in range(4):
 	data_stops = [data for data in combined_stop[i] if data != 0.0]
 	data_normal = [data for data in combined_norm[i] if data != 0.0]
+	mean = [[np.mean(data_stops)], [np.mean(data_normal)]]
+	mean_of_means.append((mean[0][0] + mean[1][0]) / 2)
 
 	ax[i].eventplot([data_stops, data_normal], lineoffsets=[1, 2], colors=['tab:blue', 'tab:orange'])
-	ax[i].eventplot([[np.mean(data_stops)], [np.mean(data_normal)]], lineoffsets=[1, 2], colors=['tab:green', 'tab:red'])
+	ax[i].eventplot(mean, lineoffsets=[1, 2], colors=['tab:green', 'tab:red'])
 	ax[i].set(
 		xlabel=types[i],
 		ylabel="word type",
@@ -162,10 +166,32 @@ for i in range(4):
 		yticklabels=["stop", "normal"]
 	)
 
+print(mean_of_means)
 plt.savefig(f"./output/task1-3/fig_sonnets_eventplot.png")
 plt.close()
 
 
+for i in range(4):
+	tp = 0
+	tn = 0
+	fp = 0
+	fn = 0
+	for n in range(len(combined_stop[i])):
+		if combined_stop[i][n] == 0:
+			pass
+		elif combined_stop[i][n] <= mean_of_means[i]:
+			tp += 1
+		else:
+			fn += 1
+	for n in range(len(combined_norm[i])):
+		if combined_norm[i][n] == 0:
+			pass
+		elif combined_norm[i][n] > mean_of_means[i]:
+			tn += 1
+		else:
+			fp += 1
+	
+	print(f"{types[i]}\nacc\t{(tp+tn)/(tp+tn+fn+fp)}\npre\t{tp/(tp+fp)}\n")
 
 
 
