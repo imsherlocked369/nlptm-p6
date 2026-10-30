@@ -8,6 +8,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import pearsonr
+from nltk.stem.snowball import SnowballStemmer
 
 def calculate_scores(documents, features):
 	N = len(documents)
@@ -86,18 +87,87 @@ sonnets = re.search(sonnets_regex, sonnets_raw).groups()
 documents = []
 features = []
 for sonnet in sonnets:
-	tokens = word_tokenize(sonnet)
+	tokens = [token.lower() for token in word_tokenize(sonnet) if token.isalpha()]
 	documents.append(tokens)
 	features.extend(tokens)
 	if len(documents) == sonnet_max:
 		break
 
 features = sorted(list(set(features)))
+stop_list = [SnowballStemmer("english").stem(feature) in stopwords.words() for feature in features]
 
 tf_scores, bm25_scores, idf_scores, ent_scores = calculate_scores(documents, features)
 
 
-stop_list = [wnl().lemmatize(feature) in stopwords.words() for feature in features]
+N, M = np.shape(tf_scores)
+print(N, M)
+
+tf_idf_stop = [ ]
+tf_ent_stop = [ ]
+bm_idf_stop = [ ]
+bm_ent_stop = [ ]
+
+tf_idf_norm = [ ]
+tf_ent_norm = [ ]
+bm_idf_norm = [ ]
+bm_ent_norm = [ ]
+
+for n in range(N):
+	for m in range(M):
+		if stop_list[m]:
+			tf_idf_stop.append(tf_scores[n][m] * idf_scores[m])
+			tf_ent_stop.append(tf_scores[n][m] * ent_scores[m])
+			bm_idf_stop.append(bm25_scores[n][m] * idf_scores[m])
+			bm_ent_stop.append(bm25_scores[n][m] * ent_scores[m])
+		else:
+			tf_idf_norm.append(tf_scores[n][m] * idf_scores[m])
+			tf_ent_norm.append(tf_scores[n][m] * ent_scores[m])
+			bm_idf_norm.append(bm25_scores[n][m] * idf_scores[m])
+			bm_ent_norm.append(bm25_scores[n][m] * ent_scores[m])
+
+
+
+combined_stop = [
+	tf_idf_stop,
+	tf_ent_stop,
+	bm_idf_stop,
+	bm_ent_stop
+]
+
+combined_norm = [
+	tf_idf_norm,
+	tf_ent_norm,
+	bm_idf_norm,
+	bm_ent_norm
+]
+
+
+types = ["tf-idf", "tf-ent", "bm-idf", "bm-ent"]
+fig, ax = plt.subplots(4, 1)
+fig.set_size_inches(15, 15)
+fig.suptitle("Sonnets weights") 
+
+for i in range(4):
+	data_stops = [data for data in combined_stop[i] if data != 0.0]
+	data_normal = [data for data in combined_norm[i] if data != 0.0]
+
+	ax[i].eventplot([data_stops, data_normal], lineoffsets=[1, 2], colors=['tab:blue', 'tab:orange'])
+	ax[i].eventplot([[np.mean(data_stops)], [np.mean(data_normal)]], lineoffsets=[1, 2], colors=['tab:green', 'tab:red'])
+	ax[i].set(
+		xlabel=types[i],
+		ylabel="word type",
+		xlim=(0, None),
+		ylim=(0, 3),
+		yticks=np.arange(1, 3),
+		yticklabels=["stop", "normal"]
+	)
+
+plt.savefig(f"./output/task1-3/fig_sonnets_eventplot.png")
+plt.close()
+
+
+
+
 
 
 # Plot scores
@@ -146,56 +216,3 @@ plt.close()
 
 print("Done")
 exit()
-
-
-
-
-
-
-data_stops = [x for x in stops_tfidf if x != 0.0]
-data_normal = [x for x in normal_tfidf if x != 0.0]
-
-data_x = data_stops + data_normal
-data_y = [0 for _ in range(len(data_stops))] + [1 for _ in range(len(data_normal))]
-print(f"Sonnets - tfidf correlation: {pearsonr(data_x, data_y)}")
-
-ax.eventplot([data_stops, data_normal], lineoffsets=[1, 2], colors=['tab:blue', 'tab:olive'])
-ax.eventplot([[np.mean(data_stops)], [np.mean(data_normal)]], lineoffsets=[1, 2], colors=['tab:orange', 'tab:purple'])
-ax.set(
-	title="Sonnets",
-	xlabel="tf-idf",
-	ylabel="word type",
-	xlim=(0, None),
-	ylim=(0, 3), 
-	yticks=np.arange(1, 3),
-	yticklabels=["stop", "normal"]
-)
-
-plt.savefig("./output/task1-3/fig_tfidf_sonnets.png")
-plt.close()
-
-fig, ax = plt.subplots()
-fig.set_size_inches(15, 5)
-
-data_stops = [x for x in stops_bm25 if x != 0.0]
-data_normal = [x for x in normal_bm25 if x != 0.0]
-
-
-data_x = data_stops + data_normal
-data_y = [0 for _ in range(len(data_stops))] + [1 for _ in range(len(data_normal))]
-print(f"Sonnets - bm25 correlation: {pearsonr(data_x, data_y)}")
-
-ax.eventplot([data_stops, data_normal], lineoffsets=[1, 2], colors=['tab:blue', 'tab:olive'])
-ax.eventplot([[np.mean(data_stops)], [np.mean(data_normal)]], lineoffsets=[1, 2], colors=['tab:orange', 'tab:purple'])
-ax.set(
-	title="Sonnets",
-	xlabel="bm25",
-	ylabel="word type",
-	xlim=(0, None),
-	ylim=(0, 3), 
-	yticks=np.arange(1, 3),
-	yticklabels=["stop", "normal"]
-)
-
-plt.savefig("./output/task1-3/fig_bm25_sonnets.png")
-plt.close()

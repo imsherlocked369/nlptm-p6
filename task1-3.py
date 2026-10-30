@@ -9,6 +9,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import pearsonr
+from nltk.stem.snowball import SnowballStemmer
 
 
 poems = {
@@ -22,7 +23,7 @@ features = []
 
 for key in poems.keys():
 	file = open(poems[key], "r")
-	tokens = word_tokenize(file.read())
+	tokens = [token.lower() for token in word_tokenize(file.read()) if token.isalpha()]
 	documents.append(tokens)
 	features.extend(tokens)
 
@@ -76,7 +77,7 @@ def calculate_scores(documents, features):
 tf_scores, bm25_scores, idf_scores, ent_scores = calculate_scores(documents, features)
 
 
-stop_list = [wnl().lemmatize(feature) in stopwords.words() for feature in features]
+stop_list = [SnowballStemmer("english").stem(feature) in stopwords.words() for feature in features]
 
 
 
