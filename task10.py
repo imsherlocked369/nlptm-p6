@@ -63,7 +63,7 @@ def wn_link(word1, lang1, word2, lang2):
 	return len(common_synsets) > 0
 
 
-def get_score(scores, key, m, n, weight_type="tf-idf"):
+def get_score(scores, key, m, n, weight_type="tf-ent"):
 
 	tf_scores, bm25_scores, idf_scores, ent_scores = scores[key]
 	match weight_type:
@@ -168,7 +168,7 @@ for i in range(len(langs) - 1):
 
 
 
-		print("\n\\begin{table}\\centering\\begin{tabular}{|c|c|c|c|c|c|}\\hline \n\t\t\t& Count &Mean & Std & Max & min \\\\ \\hline \\hline")
+		print("\n\\begin{table}[H]\\centering\\begin{tabular}{|c|c|c|c|c|c|}\\hline \n\t\t\t& Count &Mean & Std & Max & min \\\\ \\hline \\hline")
 		print(f"\t\tStop & {len(both_stops)} &{stop_plot[0]:.3e} & {stop_plot[1]:.3e} & {stop_plot[2]:.3e} & {stop_plot[3]:.3e} \\\\ \\hline")
 		print(f"\t\tNormal & {len(both_normal)} & {normal_plot[0]:.3e} & {normal_plot[1]:.3e} & {normal_plot[2]:.3e} & {normal_plot[3]:.3e} \\\\ \\hline")
 		print(f"\t\tMixed & {len(different)} & {mixed_plot[0]:.3e} & {mixed_plot[1]:.3e} & {mixed_plot[2]:.3e} & {mixed_plot[3]:.3e} \\\\ \\hline")
